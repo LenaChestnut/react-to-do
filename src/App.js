@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { v4 as uuidv4 } from "uuid";
+import Navbar from "./components/Navbar";
+import MenuPanel from "./components/MenuPanel";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+	state = {
+		projects: [
+			{ title: "Drawing", id: uuidv4() },
+			{ title: "Playing", id: uuidv4() },
+			{ title: "Coding", id: uuidv4() },
+		],
+	};
+
+	render() {
+		return (
+			<div className="App">
+				<Navbar />
+				<MenuPanel projects={this.state.projects} />
+			</div>
+		);
+	}
 }
 
 export default App;
