@@ -1,12 +1,17 @@
-import React from "react";
-import { Menu, Home } from "react-feather";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Menu, Home } from 'react-feather';
 
-const Navbar = () => {
+const Navbar = (props) => {
+	const handleClick = () => {
+		props.toggleMenu();
+	};
+
 	return (
 		<nav>
 			<ul className="navbar">
 				<li>
-					<button className="nav-link menu-btn">
+					<button className="nav-link menu-btn" onClick={handleClick}>
 						<Menu className="feather-icon" />
 					</button>
 				</li>
@@ -19,6 +24,10 @@ const Navbar = () => {
 			<h1>To-do</h1>
 		</nav>
 	);
+};
+
+Navbar.propTypes = {
+	toggleMenu: PropTypes.func,
 };
 
 export default Navbar;

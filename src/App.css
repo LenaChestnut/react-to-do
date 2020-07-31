@@ -7,10 +7,10 @@
 	--button-color: #565264;
 	--button-hover: #69647c;
 	--inactive-color: #bfacaa;
-	--btn-save: #578d3e;
-	--save-hover: #68a84b;
-	--btn-cancel: #da535e;
-	--cancel-hover: #f16672;
+	--btn-save: #71ff6c;
+	/* --save-hover: #68a84b; */
+	--btn-cancel: #ff5b68;
+	/* --cancel-hover: #ff6b72; */
 }
 
 html,
@@ -26,6 +26,10 @@ body {
 
 li {
 	cursor: pointer;
+}
+
+p {
+	font-size: 0.9rem;
 }
 
 /* #underlayer {
@@ -67,8 +71,8 @@ nav {
 
 /* SVG */
 svg {
-	width: 20px;
-	height: 20px;
+	width: 18px;
+	height: 18px;
 	stroke: var(--inactive-color);
 	display: block;
 	transition: stroke 0.2s, stroke-width 0.2s;
@@ -80,6 +84,11 @@ button:hover svg,
 button:active svg {
 	stroke: var(--light-text-color);
 	stroke-width: 2px;
+}
+
+.nav-link svg {
+	width: 20px;
+	height: 20px;
 }
 
 /* Menu panel */
@@ -126,81 +135,82 @@ button:active svg {
 }
 
 .project-card p {
-	width: 190px;
-	font-size: 0.9rem;
+	width: 184px;
 	margin-top: 2px;
 }
 
 .project-card button,
 form button {
-	margin-left: 0.5rem;
+	margin-left: 0.6rem;
 }
 
-.project-card svg {
-	width: 18px;
-	height: 18px;
+/* Buttons */
+button {
+	color: var(--inactive-color);
 }
 
-/* .new-project-btn,
+.new-project-btn,
 .new-task-btn {
-	padding: 0.4rem;
 	align-items: center;
-} */
-
-/* .new-project-btn p,
-.new-task-btn p {
-	margin: 0 0.2rem 0 0;
-	color: var(--light-text-color);
 	display: flex;
-} */
+}
 
-/* .new-project-btn img,
-.new-task-btn img {
-	display: inline;
-	margin-right: 0.2rem;
-} */
+.new-project-btn p,
+.new-task-btn p {
+	margin-left: 0.2rem;
+}
 
-/* input[type="text"],
+button p {
+	transition: color 0.2s;
+}
+
+button:hover,
+button:active {
+	color: var(--light-text-color);
+}
+
+.new-project-btn:hover svg,
+.new-project-btn:active svg {
+	stroke-width: 1px;
+}
+
+/* Inputs */
+input[type='text'],
 textarea,
 select,
-input[type="date"] {
+input[type='date'] {
 	border-radius: 5px;
 	border: none;
 	padding: 0.4rem 0.6rem;
 	font-family: inherit;
 	font-size: 0.9rem;
-	width: 168px;
+	width: 184px;
 	background-color: var(--light-text-color);
-} */
+}
 
-/* button[type="submit"] {
-	background-color: var(--btn-save);
-} */
+button[type='submit']:hover svg,
+button[type='submit']:active svg {
+	stroke: var(--btn-save);
+}
 
-/* button[type="reset"] {
-	background-color: var(--btn-cancel);
-} */
+button[type='reset']:hover svg,
+button[type='reset']:active svg {
+	stroke: var(--btn-cancel);
+}
 
-/* button[type="submit"]:hover,
-button[type="submit"]:active {
-	background-color: var(--save-hover);
-} */
+button:disabled svg,
+button:disabled:hover svg,
+button:disabled:active svg {
+	stroke-width: 1px;
+	stroke: var(--inactive-color);
+}
 
-/* button[type="reset"]:hover,
-button[type="reset"]:active {
-	background-color: var(--cancel-hover);
-} */
-
-/* button:disabled,
-button:disabled:hover,
-button:disabled:active {
-	background-color: var(--inactive-color);
-} */
-
-/* .menu-panel form {
+/* Forms */
+.menu-panel form {
 	display: flex;
 	align-items: center;
-} */
+	width: 240px;
+}
 
 /* form[name="edit-project"],
 .task-form {

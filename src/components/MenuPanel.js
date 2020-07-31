@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Edit, Trash } from 'react-feather';
+import { Edit, Trash, Plus } from 'react-feather';
+// import { NewProjectForm } from './Form';
 
 const MenuPanel = ({ projects }) => {
 	const projectList = projects.map((project) => {
@@ -25,6 +26,11 @@ const MenuPanel = ({ projects }) => {
 				</li>
 				{projectList}
 			</ul>
+			<button className="new-project-btn">
+				<Plus />
+				<p>New project</p>
+			</button>
+			{/* <NewProjectForm /> */}
 		</div>
 	);
 };
