@@ -25,7 +25,10 @@ class App extends React.Component {
 		return (
 			<div className="App">
 				<Navbar toggleMenu={this.toggleMenu} />
-				<MenuPanel projects={this.state.projects} />
+				<MenuPanel
+					projects={this.state.projects}
+					isMenuOpen={this.state.isMenuOpen}
+				/>
 			</div>
 		);
 	}

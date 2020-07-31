@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Edit, Trash, Plus } from 'react-feather';
 // import { NewProjectForm } from './Form';
 
-const MenuPanel = ({ projects }) => {
-	const projectList = projects.map((project) => {
+const MenuPanel = (props) => {
+	const projectList = props.projects.map((project) => {
 		return (
 			<li className="project-card" key={project.id}>
 				<p>{project.title}</p>
@@ -18,8 +18,14 @@ const MenuPanel = ({ projects }) => {
 		);
 	});
 
+	let menuClasses = ['menu-panel'];
+
+	if (props.isMenuOpen) {
+		menuClasses = [...menuClasses, 'open'];
+	}
+
 	return (
-		<div className="menu-panel">
+		<div className={menuClasses.join(' ')}>
 			<ul className="projects-container">
 				<li className="project-card selected">
 					<p>All tasks</p>
@@ -37,6 +43,7 @@ const MenuPanel = ({ projects }) => {
 
 MenuPanel.propTypes = {
 	projects: PropTypes.array,
+	isMenuOpen: PropTypes.bool,
 };
 
 export default MenuPanel;

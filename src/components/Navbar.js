@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import { Menu, Home } from 'react-feather';
 
 const Navbar = (props) => {
-	const handleClick = () => {
-		props.toggleMenu();
-	};
-
 	return (
 		<nav>
 			<ul className="navbar">
 				<li>
-					<button className="nav-link menu-btn" onClick={handleClick}>
+					<button
+						className="nav-link menu-btn"
+						onClick={props.toggleMenu}
+					>
 						<Menu className="feather-icon" />
 					</button>
 				</li>
