@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Home } from 'react-feather';
 
-const Navbar = (props) => {
+function Navbar(props) {
 	return (
 		<nav>
 			<ul className="navbar">
@@ -23,7 +23,7 @@ const Navbar = (props) => {
 			<h1>To-do</h1>
 		</nav>
 	);
-};
+}
 
 Navbar.propTypes = {
 	toggleMenu: PropTypes.func,
