@@ -159,6 +159,7 @@ button {
 .new-task-btn {
 	align-items: center;
 	display: flex;
+	height: 30px;
 }
 
 .new-project-btn p,

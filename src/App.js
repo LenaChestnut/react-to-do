@@ -14,11 +14,11 @@ class App extends React.Component {
 	};
 
 	toggleMenu = () => {
-		let menuState = !this.state.isMenuOpen;
-		this.setState({
-			isMenuOpen: menuState,
+		this.setState((prevState) => {
+			return {
+				isMenuOpen: !prevState.isMenuOpen,
+			};
 		});
-		console.log(this.state.isMenuOpen);
 	};
 
 	render() {

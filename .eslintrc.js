@@ -5,11 +5,11 @@ module.exports = {
 		amd: true,
 		node: true,
 	},
-	extends: ["eslint:recommended", "plugin:react/recommended"],
+	extends: ['eslint:recommended', 'plugin:react/recommended'],
 	parserOptions: {
 		ecmaVersion: 11,
-		sourceType: "module",
+		sourceType: 'module',
 	},
-	parser: "babel-eslint",
+	parser: 'babel-eslint',
 	rules: {},
 };

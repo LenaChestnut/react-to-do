@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Plus, X } from 'react-feather';
 
 class NewProjectForm extends Component {
@@ -28,15 +29,23 @@ class NewProjectForm extends Component {
 					required
 					onChange={this.handleChange}
 				></input>
-				<button type="submit" className="save" disabled>
+				<button type="submit" className="save">
 					<Plus />
 				</button>
-				<button type="reset" className="cancel">
+				<button
+					type="reset"
+					className="cancel"
+					onClick={this.props.toggleProjectForm}
+				>
 					<X />
 				</button>
 			</form>
 		);
 	}
 }
+
+NewProjectForm.propTypes = {
+	toggleProjectForm: PropTypes.func,
+};
 
 export { NewProjectForm };
