@@ -4,12 +4,13 @@ import { Plus, X } from 'react-feather';
 
 class NewProjectForm extends Component {
 	state = {
-		title: null,
+		title: '',
 	};
 
 	handleChange = (e) => {
+		const { name, value } = e.target;
 		this.setState({
-			[e.target.id]: e.target.value,
+			[name]: value,
 		});
 	};
 
@@ -23,13 +24,17 @@ class NewProjectForm extends Component {
 			<form name="project-form" onSubmit={this.handleSubmit}>
 				<input
 					type="text"
-					name="project-name"
-					id="title"
+					name="title"
 					placeholder="Project name"
+					value={this.state.title}
 					required
 					onChange={this.handleChange}
 				></input>
-				<button type="submit" className="save">
+				<button
+					type="submit"
+					className="save"
+					disabled={this.state.title ? false : true}
+				>
 					<Plus />
 				</button>
 				<button
