@@ -16,7 +16,10 @@ class NewProjectForm extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(this.state);
+		this.props.addProject(this.state);
+		this.setState({
+			title: '',
+		});
 	};
 
 	render() {
@@ -51,6 +54,7 @@ class NewProjectForm extends Component {
 
 NewProjectForm.propTypes = {
 	toggleProjectForm: PropTypes.func,
+	addProject: PropTypes.func,
 };
 
 export { NewProjectForm };

@@ -26,7 +26,12 @@ function MenuPanel(props) {
 	// Check if form should be open
 	let projectForm;
 	if (isFormVisible) {
-		projectForm = <NewProjectForm toggleProjectForm={toggleProjectForm} />;
+		projectForm = (
+			<NewProjectForm
+				toggleProjectForm={toggleProjectForm}
+				addProject={props.addProject}
+			/>
+		);
 	} else {
 		projectForm = (
 			<button className="new-project-btn" onClick={toggleProjectForm}>
@@ -52,6 +57,7 @@ function MenuPanel(props) {
 MenuPanel.propTypes = {
 	projects: PropTypes.array,
 	isMenuOpen: PropTypes.bool,
+	addProject: PropTypes.func,
 };
 
 export default MenuPanel;
