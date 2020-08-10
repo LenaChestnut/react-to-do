@@ -212,6 +212,16 @@ button:disabled:active svg {
 	stroke: var(--inactive-color);
 }
 
+/* Backdrop */
+.backdrop {
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 8;
+	position: absolute;
+	top: 0;
+}
+
 /* Forms */
 .menu-panel form {
 	display: flex;
@@ -219,7 +229,7 @@ button:disabled:active svg {
 	width: 240px;
 }
 
-/* form[name="edit-project"],
+form[name='edit-project'],
 .task-form {
 	z-index: 10;
 	position: absolute;
@@ -232,22 +242,13 @@ button:disabled:active svg {
 	text-align: center;
 	margin-left: -150px;
 	border-radius: 5px;
-} */
+}
 
-/* h2 {
+h2 {
 	font-family: inherit;
 	color: var(--light-text-color);
 	margin-bottom: 0.8rem;
-} */
-
-/* .overlay {
-	height: 100%;
-	width: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	z-index: 8;
-	position: absolute;
-	top: 0;
-} */
+}
 
 /* .task-list {
 	width: 100%;

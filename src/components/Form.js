@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Plus, X } from 'react-feather';
+import Backdrop from './Backdrop';
+import { SaveButton } from './FormComponents';
 
 class NewProjectForm extends Component {
 	state = {
@@ -33,13 +35,14 @@ class NewProjectForm extends Component {
 					required
 					onChange={this.handleChange}
 				></input>
-				<button
+				{/* <button
 					type="submit"
 					className="save"
 					disabled={this.state.title ? false : true}
 				>
 					<Plus />
-				</button>
+				</button> */}
+				<SaveButton disabled={this.state.title ? false : true} />
 				<button
 					type="reset"
 					className="cancel"
@@ -57,4 +60,25 @@ NewProjectForm.propTypes = {
 	addProject: PropTypes.func,
 };
 
-export { NewProjectForm };
+class EditProjectForm extends Component {
+	state = {};
+
+	render() {
+		return (
+			<div>
+				<Backdrop />
+				<form name="edit-project">
+					<h2>Edit project</h2>
+					<input
+						type="text"
+						name="project-name"
+						placeholder="Project name"
+						required=""
+					></input>
+				</form>
+			</div>
+		);
+	}
+}
+
+export { NewProjectForm, EditProjectForm };

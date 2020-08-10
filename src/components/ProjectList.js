@@ -4,7 +4,13 @@ import ProjectItem from './ProjectItem';
 
 function ProjectList(props) {
 	const projectList = props.projects.map((item) => {
-		return <ProjectItem key={item.id} project={item} />;
+		return (
+			<ProjectItem
+				key={item.id}
+				project={item}
+				editProject={props.editProject}
+			/>
+		);
 	});
 
 	return <div>{projectList}</div>;
@@ -12,6 +18,7 @@ function ProjectList(props) {
 
 ProjectList.propTypes = {
 	projects: PropTypes.array,
+	editProject: PropTypes.func,
 };
 
 export default ProjectList;
