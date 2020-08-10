@@ -5,7 +5,7 @@ import { Edit, Trash } from 'react-feather';
 function ProjectItem(props) {
 	function handleClick(e) {
 		if (e.target.className === 'edit') {
-			props.editProject(props.project);
+			props.openEditForm(props.project);
 		}
 	}
 
@@ -24,7 +24,7 @@ function ProjectItem(props) {
 
 ProjectItem.propTypes = {
 	project: PropTypes.object,
-	editProject: PropTypes.func,
+	openEditForm: PropTypes.func,
 };
 
 export default ProjectItem;

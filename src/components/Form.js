@@ -55,16 +55,21 @@ class EditProjectForm extends Component {
 				<Backdrop />
 				<form name="edit-project">
 					<h2>Edit project</h2>
-					<input
-						type="text"
-						name="project-name"
-						placeholder="Project name"
-						required=""
-					></input>
+					<div>
+						<input type="text" name="title"></input>
+						<SaveButton
+							disabled={this.state.title ? false : true}
+						/>
+						<CancelButton onClick={this.props.closeForm} />
+					</div>
 				</form>
 			</div>
 		);
 	}
 }
+
+EditProjectForm.propTypes = {
+	closeForm: PropTypes.func,
+};
 
 export { NewProjectForm, EditProjectForm };

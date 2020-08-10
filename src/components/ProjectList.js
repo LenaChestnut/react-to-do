@@ -8,7 +8,7 @@ function ProjectList(props) {
 			<ProjectItem
 				key={item.id}
 				project={item}
-				editProject={props.editProject}
+				openEditForm={props.openEditForm}
 			/>
 		);
 	});
@@ -18,7 +18,7 @@ function ProjectList(props) {
 
 ProjectList.propTypes = {
 	projects: PropTypes.array,
-	editProject: PropTypes.func,
+	openEditForm: PropTypes.func,
 };
 
 export default ProjectList;

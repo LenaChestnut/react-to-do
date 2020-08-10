@@ -181,20 +181,6 @@ button:active {
 	stroke-width: 1px;
 }
 
-/* Inputs */
-input[type='text'],
-textarea,
-select,
-input[type='date'] {
-	border-radius: 5px;
-	border: none;
-	padding: 0.4rem 0.6rem;
-	font-family: inherit;
-	font-size: 0.9rem;
-	width: 184px;
-	background-color: var(--light-text-color);
-}
-
 button[type='submit']:hover svg,
 button[type='submit']:active svg {
 	stroke: var(--btn-save);
@@ -248,6 +234,31 @@ h2 {
 	font-family: inherit;
 	color: var(--light-text-color);
 	margin-bottom: 0.8rem;
+	font-weight: 600;
+}
+
+form div {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+/* Inputs */
+input[type='text'],
+textarea,
+select,
+input[type='date'] {
+	border-radius: 5px;
+	border: none;
+	padding: 0.4rem 0.6rem;
+	font-family: inherit;
+	font-size: 0.9rem;
+	width: 184px;
+	background-color: var(--light-text-color);
+}
+
+form[name='edit-project'] input[type='text'] {
+	width: 80%;
+	margin-left: 0.3rem;
 }
 
 /* .task-list {

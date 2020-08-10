@@ -49,7 +49,7 @@ function MenuPanel(props) {
 				</li>
 				<ProjectList
 					projects={props.projects}
-					editProject={props.editProject}
+					openEditForm={props.openEditForm}
 				/>
 			</ul>
 			{projectForm}
@@ -61,7 +61,7 @@ MenuPanel.propTypes = {
 	projects: PropTypes.array,
 	isMenuOpen: PropTypes.bool,
 	addProject: PropTypes.func,
-	editProject: PropTypes.func,
+	openEditForm: PropTypes.func,
 };
 
 export default MenuPanel;

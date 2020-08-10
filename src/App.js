@@ -9,6 +9,7 @@ class App extends React.Component {
 	state = {
 		projects: projects,
 		isMenuOpen: false,
+		isEditingProject: false,
 	};
 
 	toggleMenu = () => {
@@ -21,6 +22,7 @@ class App extends React.Component {
 
 	addProject = (project) => {
 		project.id = uuidv4();
+		project.infoType = 'project';
 		const updatedProjects = [...this.state.projects, project];
 		this.setState((prevState) => {
 			return {
@@ -30,20 +32,32 @@ class App extends React.Component {
 		localStorage.setItem('projects', JSON.stringify(updatedProjects));
 	};
 
-	editProject = (project) => {
-		console.log(project.id);
+	openEditForm = (item) => {
+		if (item.infoType === 'project') {
+			this.setState({
+				isEditingProject: true,
+			});
+		}
+	};
+
+	closeForm = () => {
+		this.setState({
+			isEditingProject: false,
+		});
 	};
 
 	render() {
 		return (
 			<div className="App">
-				{/* <EditProjectForm /> */}
+				{this.state.isEditingProject ? (
+					<EditProjectForm closeForm={this.closeForm} />
+				) : null}
 				<Navbar toggleMenu={this.toggleMenu} />
 				<MenuPanel
 					projects={this.state.projects}
 					isMenuOpen={this.state.isMenuOpen}
 					addProject={this.addProject}
-					editProject={this.editProject}
+					openEditForm={this.openEditForm}
 				/>
 			</div>
 		);
