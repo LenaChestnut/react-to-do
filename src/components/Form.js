@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Plus, X } from 'react-feather';
 import Backdrop from './Backdrop';
-import { SaveButton } from './FormComponents';
+import { SaveButton, CancelButton } from './FormComponents';
 
 class NewProjectForm extends Component {
 	state = {
@@ -35,21 +34,8 @@ class NewProjectForm extends Component {
 					required
 					onChange={this.handleChange}
 				></input>
-				{/* <button
-					type="submit"
-					className="save"
-					disabled={this.state.title ? false : true}
-				>
-					<Plus />
-				</button> */}
 				<SaveButton disabled={this.state.title ? false : true} />
-				<button
-					type="reset"
-					className="cancel"
-					onClick={this.props.toggleProjectForm}
-				>
-					<X />
-				</button>
+				<CancelButton onClick={this.props.toggleProjectForm} />
 			</form>
 		);
 	}

@@ -14,4 +14,16 @@ SaveButton.propTypes = {
 	disabled: PropTypes.bool,
 };
 
-export { SaveButton };
+function CancelButton(props) {
+	return (
+		<button type="reset" className="cancel" onClick={props.onClick}>
+			<X />
+		</button>
+	);
+}
+
+CancelButton.propTypes = {
+	onClick: PropTypes.func,
+};
+
+export { SaveButton, CancelButton };
