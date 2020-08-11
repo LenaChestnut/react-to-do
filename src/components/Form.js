@@ -21,6 +21,7 @@ class NewProjectForm extends Component {
 		this.setState({
 			title: '',
 		});
+		this.props.toggleProjectForm();
 	};
 
 	render() {
