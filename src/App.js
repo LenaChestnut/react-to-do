@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import MenuPanel from './components/MenuPanel';
+import TaskList from './components/TaskList';
 import { EditProjectForm } from './components/Form';
 import { v4 as uuidv4 } from 'uuid';
 import projects from './data/data';
@@ -19,6 +20,13 @@ class App extends React.Component {
 				isMenuOpen: !prevState.isMenuOpen,
 			};
 		});
+	};
+
+	updateStorage = (data) => {
+		this.setState({
+			projects: data,
+		});
+		localStorage.setItem('projects', JSON.stringify(data));
 	};
 
 	addProject = (project) => {
@@ -42,10 +50,8 @@ class App extends React.Component {
 			}
 			return { ...project };
 		});
-		this.setState({
-			projects: updatedProjects,
-		});
-		localStorage.setItem('projects', JSON.stringify(updatedProjects));
+
+		this.updateStorage(updatedProjects);
 	};
 
 	deleteProject = (deletedProject) => {
@@ -56,11 +62,7 @@ class App extends React.Component {
 			return null;
 		});
 
-		this.setState({
-			projects: updatedProjects,
-		});
-
-		localStorage.setItem('projects', JSON.stringify(updatedProjects));
+		this.updateStorage(updatedProjects);
 	};
 
 	openEditForm = (item) => {
@@ -97,6 +99,7 @@ class App extends React.Component {
 					openEditForm={this.openEditForm}
 					deleteProject={this.deleteProject}
 				/>
+				<TaskList />
 			</div>
 		);
 	}
