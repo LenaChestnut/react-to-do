@@ -7,7 +7,12 @@ function ProjectItem(props) {
 		if (e.target.className === 'edit') {
 			props.openEditForm(props.project);
 		} else {
-			props.deleteProject(props.project);
+			const userConfirm = window.confirm(
+				'This action cannot be canceled. Are you sure?'
+			);
+			if (userConfirm === true) {
+				props.deleteProject(props.project);
+			}
 		}
 	}
 
