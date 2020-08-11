@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import Backdrop from './Backdrop';
 import { SaveButton, CancelButton } from './FormComponents';
@@ -46,30 +46,48 @@ NewProjectForm.propTypes = {
 	addProject: PropTypes.func,
 };
 
-class EditProjectForm extends Component {
-	state = {};
+function EditProjectForm(props) {
+	const [project, setProject] = useState(props.project);
 
-	render() {
-		return (
-			<div>
-				<Backdrop />
-				<form name="edit-project">
-					<h2>Edit project</h2>
-					<div>
-						<input type="text" name="title"></input>
-						<SaveButton
-							disabled={this.state.title ? false : true}
-						/>
-						<CancelButton onClick={this.props.closeForm} />
-					</div>
-				</form>
-			</div>
-		);
-	}
+	const handleChange = (e) => {
+		const { value } = e.target;
+		setProject({ ...project, title: value });
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		props.editProject(project);
+		props.closeForm();
+	};
+
+	return (
+		<div>
+			<Backdrop />
+			<form name="edit-project" onSubmit={handleSubmit}>
+				<h2>Edit project</h2>
+				<div>
+					<input
+						type="text"
+						name="title"
+						value={project.title}
+						onChange={handleChange}
+					></input>
+					<SaveButton
+						disabled={
+							project.title === props.project.title ? true : false
+						}
+					/>
+					<CancelButton onClick={props.closeForm} />
+				</div>
+			</form>
+		</div>
+	);
 }
 
 EditProjectForm.propTypes = {
 	closeForm: PropTypes.func,
+	editProject: PropTypes.func,
+	project: PropTypes.object,
 };
 
 export { NewProjectForm, EditProjectForm };

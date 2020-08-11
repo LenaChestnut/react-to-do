@@ -10,6 +10,7 @@ class App extends React.Component {
 		projects: projects,
 		isMenuOpen: false,
 		isEditingProject: false,
+		itemToEdit: {},
 	};
 
 	toggleMenu = () => {
@@ -23,11 +24,26 @@ class App extends React.Component {
 	addProject = (project) => {
 		project.id = uuidv4();
 		project.infoType = 'project';
-		const updatedProjects = [...this.state.projects, project];
 		this.setState((prevState) => {
 			return {
 				projects: [...prevState.projects, project],
 			};
+		});
+		localStorage.setItem(
+			'projects',
+			JSON.stringify([...this.state.projects, project])
+		);
+	};
+
+	editProject = (editedProject) => {
+		const updatedProjects = this.state.projects.map((project) => {
+			if (project.id === editedProject.id) {
+				return { ...project, title: editedProject.title };
+			}
+			return { ...project };
+		});
+		this.setState({
+			projects: updatedProjects,
 		});
 		localStorage.setItem('projects', JSON.stringify(updatedProjects));
 	};
@@ -36,6 +52,7 @@ class App extends React.Component {
 		if (item.infoType === 'project') {
 			this.setState({
 				isEditingProject: true,
+				itemToEdit: item,
 			});
 		}
 	};
@@ -43,6 +60,7 @@ class App extends React.Component {
 	closeForm = () => {
 		this.setState({
 			isEditingProject: false,
+			itemToEdit: {},
 		});
 	};
 
@@ -50,7 +68,11 @@ class App extends React.Component {
 		return (
 			<div className="App">
 				{this.state.isEditingProject ? (
-					<EditProjectForm closeForm={this.closeForm} />
+					<EditProjectForm
+						closeForm={this.closeForm}
+						editProject={this.editProject}
+						project={this.state.itemToEdit}
+					/>
 				) : null}
 				<Navbar toggleMenu={this.toggleMenu} />
 				<MenuPanel
