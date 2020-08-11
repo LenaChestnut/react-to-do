@@ -61,7 +61,8 @@ nav {
 	z-index: 5;
 }
 
-.navbar {
+.navbar,
+.navbar li {
 	display: flex;
 }
 
