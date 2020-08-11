@@ -92,6 +92,13 @@ class App extends React.Component {
 					/>
 				) : null}
 				<Navbar toggleMenu={this.toggleMenu} />
+				<div
+					className={
+						this.state.isMenuOpen
+							? 'underlayer widened'
+							: 'underlayer'
+					}
+				></div>
 				<MenuPanel
 					projects={this.state.projects}
 					isMenuOpen={this.state.isMenuOpen}

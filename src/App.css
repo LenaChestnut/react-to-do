@@ -32,17 +32,6 @@ p {
 	font-size: 0.9rem;
 }
 
-/* #underlayer {
-	width: 0px;
-	flex-shrink: 0;
-} */
-
-/* @media (max-width: 550px) {
-	#underlayer {
-		display: none;
-	}
-} */
-
 /* Navbar */
 nav {
 	position: fixed;
@@ -113,8 +102,24 @@ button:active svg {
 	margin-bottom: 0.8rem;
 }
 
+.underlayer {
+	width: 0px;
+	transition: width 0.3s ease-in-out;
+	flex-shrink: 0;
+}
+
+.widened {
+	width: 305px;
+}
+
 .open {
 	transform: translateX(0);
+}
+
+@media (max-width: 550px) {
+	.underlayer {
+		display: none;
+	}
 }
 
 /* Project cards */
