@@ -50,6 +50,7 @@ function MenuPanel(props) {
 				<ProjectList
 					projects={props.projects}
 					openEditForm={props.openEditForm}
+					deleteProject={props.deleteProject}
 				/>
 			</ul>
 			{projectForm}
@@ -62,6 +63,7 @@ MenuPanel.propTypes = {
 	isMenuOpen: PropTypes.bool,
 	addProject: PropTypes.func,
 	openEditForm: PropTypes.func,
+	deleteProject: PropTypes.func,
 };
 
 export default MenuPanel;

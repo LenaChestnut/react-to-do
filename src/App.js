@@ -48,6 +48,21 @@ class App extends React.Component {
 		localStorage.setItem('projects', JSON.stringify(updatedProjects));
 	};
 
+	deleteProject = (deletedProject) => {
+		const updatedProjects = this.state.projects.filter((project) => {
+			if (project.id !== deletedProject.id) {
+				return { ...project };
+			}
+			return null;
+		});
+
+		this.setState({
+			projects: updatedProjects,
+		});
+
+		localStorage.setItem('projects', JSON.stringify(updatedProjects));
+	};
+
 	openEditForm = (item) => {
 		if (item.infoType === 'project') {
 			this.setState({
@@ -69,9 +84,9 @@ class App extends React.Component {
 			<div className="App">
 				{this.state.isEditingProject ? (
 					<EditProjectForm
+						project={this.state.itemToEdit}
 						closeForm={this.closeForm}
 						editProject={this.editProject}
-						project={this.state.itemToEdit}
 					/>
 				) : null}
 				<Navbar toggleMenu={this.toggleMenu} />
@@ -80,6 +95,7 @@ class App extends React.Component {
 					isMenuOpen={this.state.isMenuOpen}
 					addProject={this.addProject}
 					openEditForm={this.openEditForm}
+					deleteProject={this.deleteProject}
 				/>
 			</div>
 		);

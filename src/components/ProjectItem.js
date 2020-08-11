@@ -6,6 +6,8 @@ function ProjectItem(props) {
 	function handleClick(e) {
 		if (e.target.className === 'edit') {
 			props.openEditForm(props.project);
+		} else {
+			props.deleteProject(props.project);
 		}
 	}
 
@@ -25,6 +27,7 @@ function ProjectItem(props) {
 ProjectItem.propTypes = {
 	project: PropTypes.object,
 	openEditForm: PropTypes.func,
+	deleteProject: PropTypes.func,
 };
 
 export default ProjectItem;

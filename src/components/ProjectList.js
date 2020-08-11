@@ -9,6 +9,7 @@ function ProjectList(props) {
 				key={item.id}
 				project={item}
 				openEditForm={props.openEditForm}
+				deleteProject={props.deleteProject}
 			/>
 		);
 	});
@@ -19,6 +20,7 @@ function ProjectList(props) {
 ProjectList.propTypes = {
 	projects: PropTypes.array,
 	openEditForm: PropTypes.func,
+	deleteProject: PropTypes.func,
 };
 
 export default ProjectList;
