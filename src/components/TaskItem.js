@@ -1,9 +1,16 @@
-import React from 'react';
-import { ChevronDown } from 'react-feather';
+import React, { useState } from 'react';
+import { ChevronDown, Check } from 'react-feather';
 
 function TaskItem() {
+	const [completed, setCompleted] = useState(false);
+	const [hover, setHover] = useState(false);
+
+	const handleClick = () => {
+		setCompleted((completed) => !completed);
+	};
+
 	return (
-		<div className="task-wrapper medium-priority">
+		<div className="task-wrapper low-priority">
 			<div className="task-card">
 				<button className="expand-btn">
 					<ChevronDown />
@@ -14,8 +21,14 @@ function TaskItem() {
 						<p className="task-info">Due: tomorrow</p>
 					</div>
 				</div>
-				<input type="checkbox"></input>
-				<label></label>
+				<input type="checkbox" checked={completed}></input>
+				<label
+					onClick={handleClick}
+					onMouseEnter={() => setHover(true)}
+					onMouseLeave={() => setHover(false)}
+				>
+					{completed || hover ? <Check /> : null}
+				</label>
 			</div>
 		</div>
 	);
