@@ -78,6 +78,7 @@ class App extends React.Component {
 	// TASK CONTROL
 
 	addTask = (task) => {
+		task.id = uuidv4();
 		const updatedProjects = this.state.projects.map((project) => {
 			if (project.id === task.project) {
 				return { ...project, tasks: [...project.tasks, task] };
@@ -151,6 +152,7 @@ class App extends React.Component {
 				/>
 				<TaskList
 					projects={this.state.projects}
+					currentProject={this.state.currentProject}
 					openNewTaskForm={this.openNewTaskForm}
 				/>
 			</div>

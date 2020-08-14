@@ -12,7 +12,7 @@ function TaskItem(props) {
 	};
 
 	return (
-		<div className="task-wrapper low-priority">
+		<li className="task-wrapper low-priority">
 			<div className="task-card">
 				<button
 					className="expand-btn"
@@ -43,17 +43,18 @@ function TaskItem(props) {
 			</div>
 			{isExpanded ? (
 				<div className="expanded-info-container">
-					<p className="task-project-info">{props.task.project}</p>
+					<p className="task-project-info">{props.projectTitle}</p>
 					<p>{props.task.description}</p>
 					<button className="edit">Edit task</button>
 				</div>
 			) : null}
-		</div>
+		</li>
 	);
 }
 
 TaskItem.propTypes = {
 	task: PropTypes.object,
+	projectTitle: PropTypes.string,
 };
 
 export default TaskItem;
