@@ -4,6 +4,7 @@ import { Edit, Trash } from 'react-feather';
 
 function ProjectItem(props) {
 	function handleClick(e) {
+		e.stopPropagation();
 		if (e.target.className === 'edit') {
 			props.openEditForm(props.project);
 		} else if (e.target.className === 'remove') {

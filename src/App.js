@@ -65,6 +65,11 @@ class App extends React.Component {
 	};
 
 	deleteProject = (deletedProject) => {
+		if (deletedProject.id === this.state.currentProject.id) {
+			this.setState({
+				currentProject: { id: 'default', title: 'All tasks' },
+			});
+		}
 		const updatedProjects = this.state.projects.filter((project) => {
 			if (project.id !== deletedProject.id) {
 				return { ...project };

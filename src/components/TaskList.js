@@ -4,12 +4,6 @@ import { Plus } from 'react-feather';
 import PropTypes from 'prop-types';
 
 function TaskList(props) {
-	// const taskItems = props.projects
-	// 	.map((project) => {
-	// 		return { ...project.tasks };
-	// 	})
-	// 	.reduce((accumulator, value) => accumulator.concat(value), []);
-
 	const project = props.projects.filter((project) =>
 		project.id === props.currentProject.id ? project : null
 	)[0];
@@ -30,7 +24,11 @@ function TaskList(props) {
 		));
 	} else {
 		taskItems = project.tasks.map((task) => (
-			<TaskItem key={task.id} task={task} projectTitle={project.title} />
+			<TaskItem
+				key={task.id}
+				task={task}
+				projectTitle={task.project.title}
+			/>
 		));
 	}
 
