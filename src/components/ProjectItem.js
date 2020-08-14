@@ -19,12 +19,16 @@ function ProjectItem(props) {
 	return (
 		<li className="project-card">
 			<p>{props.project.title}</p>
-			<button className="edit" onClick={handleClick}>
-				<Edit />
-			</button>
-			<button className="remove" onClick={handleClick}>
-				<Trash />
-			</button>
+			{props.project.id !== 'default' ? (
+				<div>
+					<button className="edit" onClick={handleClick}>
+						<Edit />
+					</button>
+					<button className="remove" onClick={handleClick}>
+						<Trash />
+					</button>
+				</div>
+			) : null}
 		</li>
 	);
 }

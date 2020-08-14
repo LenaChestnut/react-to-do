@@ -44,9 +44,9 @@ function MenuPanel(props) {
 	return (
 		<div className={menuClasses.join(' ')}>
 			<ul className="projects-container">
-				<li className="project-card selected">
+				{/* <li className="project-card selected">
 					<p>All tasks</p>
-				</li>
+				</li> */}
 				<ProjectList
 					projects={props.projects}
 					openEditForm={props.openEditForm}

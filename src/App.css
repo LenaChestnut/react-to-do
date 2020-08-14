@@ -255,6 +255,12 @@ form div {
 	justify-content: space-evenly;
 }
 
+.task-form {
+	height: auto;
+	text-align: center;
+	top: 15%;
+}
+
 /* Inputs */
 input[type='text'],
 textarea,
@@ -272,6 +278,24 @@ input[type='date'] {
 form[name='edit-project'] input[type='text'] {
 	width: 80%;
 	margin-left: 0.3rem;
+}
+
+.task-form input,
+textarea,
+select {
+	width: 100%;
+	margin: 0 auto 0.9rem;
+	display: block;
+}
+
+.task-form p {
+	color: var(--light-text-color);
+	margin-bottom: 0.4rem;
+	font-size: 0.9rem;
+}
+
+textarea {
+	resize: none;
 }
 
 /* Tasks view */
@@ -360,22 +384,27 @@ label {
 	cursor: pointer;
 }
 
-/* label:hover,
-input[type='checkbox']:checked + label {
-	background: center no-repeat url('../dist/assets/check.svg'),
-		var(--light-text-color);
-} */
+/* Expanded task view */
 
-/* .expanded-info-container {
+.expanded-info-container {
 	padding: 0 52px 1.5rem 28px;
 	color: var(--light-text-color);
-} */
+}
 
-/* .expanded-info-container p {
-	margin-bottom: 0.5rem;
-} */
+.expanded-info-container p {
+	margin-bottom: 1rem;
+}
 
-/* .expanded-info-container .edit {
+.task-project-info {
+	padding: 0.4rem;
+	margin: 0;
+	background: var(--button-color);
+	display: inline-block;
+	border-radius: 5px;
+	font-size: 0.7rem;
+}
+
+.expanded-info-container .edit {
 	display: block;
 	margin-top: 0.4em;
 	background-color: transparent;
@@ -384,42 +413,10 @@ input[type='checkbox']:checked + label {
 	border-bottom: 1px solid currentColor;
 	font-size: 0.7rem;
 	color: var(--inactive-color);
-} */
+	transition: color 0.1s ease-in-out;
+}
 
-/* .expanded-info-container .edit:hover,
+.expanded-info-container .edit:hover,
 .expanded-info-container .edit:active {
 	color: var(--light-text-color);
-} */
-
-/* .task-project-info {
-	padding: 0.4rem;
-	margin: 0;
-	background: var(--button-color);
-	display: inline-block;
-	border-radius: 5px;
-	font-size: 0.7rem;
-} */
-
-/* .task-form {
-	height: auto;
-	text-align: center;
-	top: 15%;
-} */
-
-/* .task-form input,
-textarea,
-select {
-	width: 100%;
-	margin: 0 auto 0.9rem;
-	display: block;
-} */
-
-/* .task-form p {
-	color: var(--light-text-color);
-	margin-bottom: 0.4rem;
-	font-size: 0.9rem;
-} */
-
-/* textarea {
-	resize: none;
-} */
+}

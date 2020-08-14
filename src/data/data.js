@@ -1,7 +1,9 @@
 // Initialize projects array when app is loaded
 const projects = (function getProjects() {
 	if (!('projects' in localStorage)) {
-		localStorage.setItem('projects', JSON.stringify([]));
+		const defaultProject = { title: 'All tasks', id: 'default', tasks: [] };
+		localStorage.setItem('projects', JSON.stringify([defaultProject]));
+		// localStorage.setItem('projects', JSON.stringify([projects]));
 	}
 	return JSON.parse(localStorage.getItem('projects'));
 })();

@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import MenuPanel from './components/MenuPanel';
 import TaskList from './components/TaskList';
-import { EditProjectForm } from './components/Form';
+import { EditProjectForm, NewTaskForm } from './components/Form';
 import { v4 as uuidv4 } from 'uuid';
 import projects from './data/data';
 
@@ -12,6 +12,7 @@ class App extends React.Component {
 		isMenuOpen: false,
 		isEditingProject: false,
 		itemToEdit: {},
+		isTaskFormOpen: false,
 	};
 
 	toggleMenu = () => {
@@ -29,9 +30,11 @@ class App extends React.Component {
 		localStorage.setItem('projects', JSON.stringify(data));
 	};
 
+	// PROJECT CONTROL
 	addProject = (project) => {
 		project.id = uuidv4();
 		project.infoType = 'project';
+		project.tasks = [];
 		this.setState((prevState) => {
 			return {
 				projects: [...prevState.projects, project],
@@ -65,6 +68,26 @@ class App extends React.Component {
 		this.updateStorage(updatedProjects);
 	};
 
+	// TASK CONTROL
+
+	addTask = (task) => {
+		const updatedProjects = this.state.projects.map((project) => {
+			if (project.id === task.project) {
+				return { ...project, tasks: [...project.tasks, task] };
+			}
+			return { ...project };
+		});
+
+		this.updateStorage(updatedProjects);
+	};
+
+	// FORMS
+	openNewTaskForm = () => {
+		this.setState({
+			isTaskFormOpen: true,
+		});
+	};
+
 	openEditForm = (item) => {
 		if (item.infoType === 'project') {
 			this.setState({
@@ -74,9 +97,9 @@ class App extends React.Component {
 		}
 	};
 
-	closeForm = () => {
+	closeForm = (formState) => {
 		this.setState({
-			isEditingProject: false,
+			[formState]: false,
 			itemToEdit: {},
 		});
 	};
@@ -87,8 +110,19 @@ class App extends React.Component {
 				{this.state.isEditingProject ? (
 					<EditProjectForm
 						project={this.state.itemToEdit}
-						closeForm={this.closeForm}
+						closeForm={() => {
+							this.closeForm('isEditingProject');
+						}}
 						editProject={this.editProject}
+					/>
+				) : null}
+				{this.state.isTaskFormOpen ? (
+					<NewTaskForm
+						projects={this.state.projects}
+						closeForm={() => {
+							this.closeForm('isTaskFormOpen');
+						}}
+						addTask={this.addTask}
 					/>
 				) : null}
 				<Navbar toggleMenu={this.toggleMenu} />
@@ -106,7 +140,10 @@ class App extends React.Component {
 					openEditForm={this.openEditForm}
 					deleteProject={this.deleteProject}
 				/>
-				<TaskList />
+				<TaskList
+					projects={this.state.projects}
+					openNewTaskForm={this.openNewTaskForm}
+				/>
 			</div>
 		);
 	}
