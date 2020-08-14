@@ -146,14 +146,15 @@ label svg {
 	color: var(--light-text-color);
 }
 
-.selected:before {
-	content: '';
-	width: 10px;
-}
-
 .project-card p {
 	width: 184px;
 	margin-top: 2px;
+	padding: 0;
+	transition: padding 0.1s ease-in;
+}
+
+.selected p {
+	padding: 0 0 0 10px;
 }
 
 .project-card button,

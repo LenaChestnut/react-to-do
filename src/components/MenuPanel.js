@@ -44,11 +44,10 @@ function MenuPanel(props) {
 	return (
 		<div className={menuClasses.join(' ')}>
 			<ul className="projects-container">
-				{/* <li className="project-card selected">
-					<p>All tasks</p>
-				</li> */}
 				<ProjectList
 					projects={props.projects}
+					currentProject={props.currentProject}
+					setCurrentProject={props.setCurrentProject}
 					openEditForm={props.openEditForm}
 					deleteProject={props.deleteProject}
 				/>
@@ -60,6 +59,8 @@ function MenuPanel(props) {
 
 MenuPanel.propTypes = {
 	projects: PropTypes.array,
+	currentProject: PropTypes.string,
+	setCurrentProject: PropTypes.func,
 	isMenuOpen: PropTypes.bool,
 	addProject: PropTypes.func,
 	openEditForm: PropTypes.func,

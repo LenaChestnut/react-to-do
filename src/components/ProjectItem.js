@@ -6,7 +6,7 @@ function ProjectItem(props) {
 	function handleClick(e) {
 		if (e.target.className === 'edit') {
 			props.openEditForm(props.project);
-		} else {
+		} else if (e.target.className === 'remove') {
 			const userConfirm = window.confirm(
 				'This action cannot be canceled. Are you sure?'
 			);
@@ -17,7 +17,14 @@ function ProjectItem(props) {
 	}
 
 	return (
-		<li className="project-card">
+		<li
+			className={
+				props.currentProject === props.project.id
+					? 'project-card selected'
+					: 'project-card'
+			}
+			onClick={() => props.setCurrentProject(props.project.id)}
+		>
 			<p>{props.project.title}</p>
 			{props.project.id !== 'default' ? (
 				<div>
@@ -35,6 +42,8 @@ function ProjectItem(props) {
 
 ProjectItem.propTypes = {
 	project: PropTypes.object,
+	currentProject: PropTypes.string,
+	setCurrentProject: PropTypes.func,
 	openEditForm: PropTypes.func,
 	deleteProject: PropTypes.func,
 };

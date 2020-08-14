@@ -13,6 +13,7 @@ class App extends React.Component {
 		isEditingProject: false,
 		itemToEdit: {},
 		isTaskFormOpen: false,
+		currentProject: 'default',
 	};
 
 	toggleMenu = () => {
@@ -20,6 +21,12 @@ class App extends React.Component {
 			return {
 				isMenuOpen: !prevState.isMenuOpen,
 			};
+		});
+	};
+
+	setCurrentProject = (projectId) => {
+		this.setState({
+			currentProject: projectId,
 		});
 	};
 
@@ -135,6 +142,8 @@ class App extends React.Component {
 				></div>
 				<MenuPanel
 					projects={this.state.projects}
+					currentProject={this.state.currentProject}
+					setCurrentProject={this.setCurrentProject}
 					isMenuOpen={this.state.isMenuOpen}
 					addProject={this.addProject}
 					openEditForm={this.openEditForm}

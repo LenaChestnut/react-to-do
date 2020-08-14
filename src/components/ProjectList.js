@@ -10,6 +10,8 @@ function ProjectList(props) {
 				project={item}
 				openEditForm={props.openEditForm}
 				deleteProject={props.deleteProject}
+				currentProject={props.currentProject}
+				setCurrentProject={props.setCurrentProject}
 			/>
 		);
 	});
@@ -19,6 +21,8 @@ function ProjectList(props) {
 
 ProjectList.propTypes = {
 	projects: PropTypes.array,
+	currentProject: PropTypes.string,
+	setCurrentProject: PropTypes.func,
 	openEditForm: PropTypes.func,
 	deleteProject: PropTypes.func,
 };
