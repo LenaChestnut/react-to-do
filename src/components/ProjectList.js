@@ -21,7 +21,7 @@ function ProjectList(props) {
 
 ProjectList.propTypes = {
 	projects: PropTypes.array,
-	currentProject: PropTypes.string,
+	currentProject: PropTypes.object,
 	setCurrentProject: PropTypes.func,
 	openEditForm: PropTypes.func,
 	deleteProject: PropTypes.func,

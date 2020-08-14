@@ -11,12 +11,28 @@ function TaskList(props) {
 	// 	.reduce((accumulator, value) => accumulator.concat(value), []);
 
 	const project = props.projects.filter((project) =>
-		project.id === props.currentProject ? project : null
+		project.id === props.currentProject.id ? project : null
 	)[0];
 
-	const taskItems = project.tasks.map((task) => (
-		<TaskItem key={task.id} task={task} projectTitle={project.title} />
-	));
+	let taskItems;
+
+	if (project.id === 'default') {
+		const tasks = props.projects
+			.map((project) => project.tasks)
+			.reduce((acc, val) => acc.concat(val));
+		console.log(tasks);
+		taskItems = tasks.map((task) => (
+			<TaskItem
+				key={task.id}
+				task={task}
+				projectTitle={task.project.title}
+			/>
+		));
+	} else {
+		taskItems = project.tasks.map((task) => (
+			<TaskItem key={task.id} task={task} projectTitle={project.title} />
+		));
+	}
 
 	return (
 		<ul className="task-list">
@@ -31,7 +47,7 @@ function TaskList(props) {
 
 TaskList.propTypes = {
 	projects: PropTypes.array,
-	currentProject: PropTypes.string,
+	currentProject: PropTypes.object,
 	openNewTaskForm: PropTypes.func,
 };
 

@@ -59,7 +59,7 @@ function MenuPanel(props) {
 
 MenuPanel.propTypes = {
 	projects: PropTypes.array,
-	currentProject: PropTypes.string,
+	currentProject: PropTypes.object,
 	setCurrentProject: PropTypes.func,
 	isMenuOpen: PropTypes.bool,
 	addProject: PropTypes.func,

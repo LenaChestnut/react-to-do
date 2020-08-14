@@ -13,7 +13,7 @@ class App extends React.Component {
 		isEditingProject: false,
 		itemToEdit: {},
 		isTaskFormOpen: false,
-		currentProject: 'default',
+		currentProject: { id: 'default', title: 'All tasks' },
 	};
 
 	toggleMenu = () => {
@@ -24,9 +24,9 @@ class App extends React.Component {
 		});
 	};
 
-	setCurrentProject = (projectId) => {
+	setCurrentProject = (projectId, projectTitle) => {
 		this.setState({
-			currentProject: projectId,
+			currentProject: { id: projectId, title: projectTitle },
 		});
 	};
 
@@ -80,7 +80,7 @@ class App extends React.Component {
 	addTask = (task) => {
 		task.id = uuidv4();
 		const updatedProjects = this.state.projects.map((project) => {
-			if (project.id === task.project) {
+			if (project.id === task.project.id) {
 				return { ...project, tasks: [...project.tasks, task] };
 			}
 			return { ...project };

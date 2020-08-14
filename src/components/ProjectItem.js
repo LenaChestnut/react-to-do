@@ -19,11 +19,13 @@ function ProjectItem(props) {
 	return (
 		<li
 			className={
-				props.currentProject === props.project.id
+				props.currentProject.id === props.project.id
 					? 'project-card selected'
 					: 'project-card'
 			}
-			onClick={() => props.setCurrentProject(props.project.id)}
+			onClick={() =>
+				props.setCurrentProject(props.project.id, props.project.title)
+			}
 		>
 			<p>{props.project.title}</p>
 			{props.project.id !== 'default' ? (
@@ -42,7 +44,7 @@ function ProjectItem(props) {
 
 ProjectItem.propTypes = {
 	project: PropTypes.object,
-	currentProject: PropTypes.string,
+	currentProject: PropTypes.object,
 	setCurrentProject: PropTypes.func,
 	openEditForm: PropTypes.func,
 	deleteProject: PropTypes.func,

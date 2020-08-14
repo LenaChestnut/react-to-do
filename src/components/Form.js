@@ -96,7 +96,10 @@ function NewTaskForm(props) {
 	const [task, setTask] = useState({
 		title: '',
 		description: '',
-		project: props.currentProject,
+		project: {
+			id: props.currentProject.id,
+			title: props.currentProject.title,
+		},
 		priority: '3',
 		dueDate: format(Date.now(), 'yyyy-MM-dd'),
 		infoType: 'task',
@@ -137,7 +140,7 @@ function NewTaskForm(props) {
 				<select
 					name="project"
 					required
-					value={task.project}
+					value={task.project.id}
 					onChange={handleChange}
 				>
 					{props.projects.map((project) => {
@@ -177,7 +180,7 @@ function NewTaskForm(props) {
 NewTaskForm.propTypes = {
 	closeForm: PropTypes.func,
 	projects: PropTypes.array,
-	currentProject: PropTypes.string,
+	currentProject: PropTypes.object,
 	addTask: PropTypes.func,
 };
 
