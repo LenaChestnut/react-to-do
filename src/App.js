@@ -127,6 +127,7 @@ class App extends React.Component {
 				{this.state.isTaskFormOpen ? (
 					<NewTaskForm
 						projects={this.state.projects}
+						currentProject={this.state.currentProject}
 						closeForm={() => {
 							this.closeForm('isTaskFormOpen');
 						}}

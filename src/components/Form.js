@@ -96,7 +96,7 @@ function NewTaskForm(props) {
 	const [task, setTask] = useState({
 		title: '',
 		description: '',
-		project: 'default',
+		project: props.currentProject,
 		priority: '3',
 		dueDate: format(Date.now(), 'yyyy-MM-dd'),
 		infoType: 'task',
@@ -177,6 +177,7 @@ function NewTaskForm(props) {
 NewTaskForm.propTypes = {
 	closeForm: PropTypes.func,
 	projects: PropTypes.array,
+	currentProject: PropTypes.string,
 	addTask: PropTypes.func,
 };
 
