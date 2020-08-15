@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronUp, Check } from 'react-feather';
 import PropTypes from 'prop-types';
 
@@ -11,6 +11,10 @@ function TaskItem(props) {
 		setIsCompleted((isCompleted) => !isCompleted);
 		props.deleteTask(props.task);
 	};
+
+	useEffect(() => {
+		setIsExpanded(false);
+	}, [props.currentProject]);
 
 	let taskClasses = ['task-wrapper'];
 
@@ -67,6 +71,7 @@ TaskItem.propTypes = {
 	task: PropTypes.object,
 	projectTitle: PropTypes.string,
 	deleteTask: PropTypes.func,
+	currentProject: PropTypes.object,
 };
 
 export default TaskItem;

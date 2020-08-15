@@ -21,6 +21,7 @@ function TaskList(props) {
 				task={task}
 				projectTitle={task.project.title}
 				deleteTask={props.deleteTask}
+				currentProject={props.currentProject}
 			/>
 		));
 	} else {
@@ -30,6 +31,7 @@ function TaskList(props) {
 				task={task}
 				projectTitle={task.project.title}
 				deleteTask={props.deleteTask}
+				currentProject={props.currentProject}
 			/>
 		));
 	}
