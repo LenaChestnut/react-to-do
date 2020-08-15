@@ -37,6 +37,20 @@ class App extends React.Component {
 		localStorage.setItem('projects', JSON.stringify(data));
 	};
 
+	// TASK CONTROL
+
+	addTask = (task) => {
+		task.id = uuidv4();
+		const updatedProjects = this.state.projects.map((project) => {
+			if (project.id === task.project.id) {
+				return { ...project, tasks: [...project.tasks, task] };
+			}
+			return { ...project };
+		});
+
+		this.updateStorage(updatedProjects);
+	};
+
 	// PROJECT CONTROL
 	addProject = (project) => {
 		project.id = uuidv4();
@@ -53,7 +67,12 @@ class App extends React.Component {
 		);
 	};
 
+	editTask = (editedTask) => {
+		console.log(editedTask);
+	};
+
 	editProject = (editedProject) => {
+		editedProject.tasks.forEach((task) => this.editTask(task));
 		const updatedProjects = this.state.projects.map((project) => {
 			if (project.id === editedProject.id) {
 				return { ...project, title: editedProject.title };
@@ -75,20 +94,6 @@ class App extends React.Component {
 				return { ...project };
 			}
 			return null;
-		});
-
-		this.updateStorage(updatedProjects);
-	};
-
-	// TASK CONTROL
-
-	addTask = (task) => {
-		task.id = uuidv4();
-		const updatedProjects = this.state.projects.map((project) => {
-			if (project.id === task.project.id) {
-				return { ...project, tasks: [...project.tasks, task] };
-			}
-			return { ...project };
 		});
 
 		this.updateStorage(updatedProjects);
