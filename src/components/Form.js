@@ -67,7 +67,7 @@ function EditProjectForm(props) {
 
 	return (
 		<div>
-			<Backdrop />
+			<Backdrop closeForm={props.closeForm} />
 			<form name="edit-project" onSubmit={handleSubmit}>
 				<h2>Edit project</h2>
 				<div>
@@ -122,7 +122,7 @@ function NewTaskForm(props) {
 
 	return (
 		<div>
-			<Backdrop />
+			<Backdrop closeForm={props.closeForm} />
 			<form name="new-task" className="task-form" onSubmit={handleSubmit}>
 				<h2>New task</h2>
 				<input
