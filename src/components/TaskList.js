@@ -1,4 +1,5 @@
 import React from 'react';
+import { parseISO } from 'date-fns';
 import TaskItem from './TaskItem';
 import { Plus } from 'react-feather';
 import PropTypes from 'prop-types';
@@ -8,6 +9,24 @@ function TaskList(props) {
 		project.id === props.currentProject.id ? project : null
 	)[0];
 
+	const sortTasks = (tasks) => {
+		return tasks
+			.sort((task1, task2) => {
+				if (JSON.parse(task1.priority) < JSON.parse(task2.priority)) {
+					return 1;
+				} else {
+					return -1;
+				}
+			})
+			.sort((task1, task2) => {
+				if (parseISO(task1.dueDate) > parseISO(task2.dueDate)) {
+					return 1;
+				} else {
+					return -1;
+				}
+			});
+	};
+
 	let taskItems;
 
 	if (project.id === 'default') {
@@ -15,7 +34,9 @@ function TaskList(props) {
 			.map((project) => project.tasks)
 			.reduce((acc, val) => acc.concat(val));
 
-		taskItems = tasks.map((task) => (
+		const sortedTasks = sortTasks(tasks);
+
+		taskItems = sortedTasks.map((task) => (
 			<TaskItem
 				key={task.id}
 				task={task}
@@ -25,7 +46,9 @@ function TaskList(props) {
 			/>
 		));
 	} else {
-		taskItems = project.tasks.map((task) => (
+		const sortedTasks = sortTasks(project.tasks);
+
+		taskItems = sortedTasks.map((task) => (
 			<TaskItem
 				key={task.id}
 				task={task}
