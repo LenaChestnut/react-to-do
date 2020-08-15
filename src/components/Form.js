@@ -111,7 +111,12 @@ function NewTaskForm(props) {
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		setTask({ ...task, [name]: value });
+		if (name !== 'project') {
+			setTask({ ...task, [name]: value });
+		} else {
+			const { id, title } = JSON.parse(value);
+			setTask({ ...task, project: { id, title } });
+		}
 	};
 
 	const handleSubmit = (e) => {
@@ -144,12 +149,16 @@ function NewTaskForm(props) {
 				<select
 					name="project"
 					required
-					value={task.project.id}
+					// value={task.project.id}
+					value={JSON.stringify(task.project)}
 					onChange={handleChange}
 				>
 					{props.projects.map((project) => {
 						return (
-							<option key={project.id} value={project.id}>
+							<option
+								key={project.id}
+								value={JSON.stringify(project)}
+							>
 								{project.title}
 							</option>
 						);
