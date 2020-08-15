@@ -20,6 +20,7 @@ function TaskList(props) {
 				key={task.id}
 				task={task}
 				projectTitle={task.project.title}
+				deleteTask={props.deleteTask}
 			/>
 		));
 	} else {
@@ -28,6 +29,7 @@ function TaskList(props) {
 				key={task.id}
 				task={task}
 				projectTitle={task.project.title}
+				deleteTask={props.deleteTask}
 			/>
 		));
 	}
@@ -47,6 +49,7 @@ TaskList.propTypes = {
 	projects: PropTypes.array,
 	currentProject: PropTypes.object,
 	openNewTaskForm: PropTypes.func,
+	deleteTask: PropTypes.func,
 };
 
 export default TaskList;

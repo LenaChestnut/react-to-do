@@ -9,6 +9,7 @@ function TaskItem(props) {
 
 	const handleClick = () => {
 		setIsCompleted((isCompleted) => !isCompleted);
+		props.deleteTask(props.task);
 	};
 
 	let taskClasses = ['task-wrapper'];
@@ -65,6 +66,7 @@ function TaskItem(props) {
 TaskItem.propTypes = {
 	task: PropTypes.object,
 	projectTitle: PropTypes.string,
+	deleteTask: PropTypes.func,
 };
 
 export default TaskItem;

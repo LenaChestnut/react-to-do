@@ -51,6 +51,27 @@ class App extends React.Component {
 		this.updateStorage(updatedProjects);
 	};
 
+	editTask = (editedTask) => {
+		console.log(editedTask);
+	};
+
+	deleteTask = (deletedTask) => {
+		const updatedProjects = this.state.projects.map((project) => {
+			if (project.id === deletedTask.project.id) {
+				const index = project.tasks.indexOf(deletedTask);
+				return {
+					...project,
+					tasks: [
+						...project.tasks.slice(0, index),
+						...project.tasks.slice(index + 1),
+					],
+				};
+			}
+			return project;
+		});
+		this.updateStorage(updatedProjects);
+	};
+
 	// PROJECT CONTROL
 	addProject = (project) => {
 		project.id = uuidv4();
@@ -65,10 +86,6 @@ class App extends React.Component {
 			'projects',
 			JSON.stringify([...this.state.projects, project])
 		);
-	};
-
-	editTask = (editedTask) => {
-		console.log(editedTask);
 	};
 
 	editProject = (editedProject) => {
@@ -165,6 +182,7 @@ class App extends React.Component {
 					projects={this.state.projects}
 					currentProject={this.state.currentProject}
 					openNewTaskForm={this.openNewTaskForm}
+					deleteTask={this.deleteTask}
 				/>
 			</div>
 		);
