@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { format, parseISO, isToday, isTomorrow } from 'date-fns';
 import { ChevronDown, ChevronUp, Check } from 'react-feather';
 import PropTypes from 'prop-types';
 
@@ -26,6 +27,16 @@ function TaskItem(props) {
 		taskClasses = [...taskClasses, 'low-priority'];
 	}
 
+	let dueDateText;
+
+	if (isToday(parseISO(props.task.dueDate))) {
+		dueDateText = 'Today';
+	} else if (isTomorrow(parseISO(props.task.dueDate))) {
+		dueDateText = 'Tomorrow';
+	} else {
+		dueDateText = format(parseISO(props.task.dueDate), 'PPP');
+	}
+
 	return (
 		<li className={taskClasses.join(' ')}>
 			<div className="task-card">
@@ -40,7 +51,7 @@ function TaskItem(props) {
 				<div>
 					<p>{props.task.title}</p>
 					<div className="task-info-container">
-						<p className="task-info">Due: {props.task.dueDate}</p>
+						<p className="task-info">Due: {dueDateText}</p>
 					</div>
 				</div>
 				<input
