@@ -11,8 +11,18 @@ function TaskItem(props) {
 		setIsCompleted((isCompleted) => !isCompleted);
 	};
 
+	let taskClasses = ['task-wrapper'];
+
+	if (props.task.priority === '1') {
+		taskClasses = [...taskClasses, 'high-priority'];
+	} else if (props.task.priority === '2') {
+		taskClasses = [...taskClasses, 'medium-priority'];
+	} else {
+		taskClasses = [...taskClasses, 'low-priority'];
+	}
+
 	return (
-		<li className="task-wrapper low-priority">
+		<li className={taskClasses.join(' ')}>
 			<div className="task-card">
 				<button
 					className="expand-btn"

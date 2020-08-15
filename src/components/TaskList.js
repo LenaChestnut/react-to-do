@@ -14,7 +14,7 @@ function TaskList(props) {
 		const tasks = props.projects
 			.map((project) => project.tasks)
 			.reduce((acc, val) => acc.concat(val));
-		console.log(tasks);
+
 		taskItems = tasks.map((task) => (
 			<TaskItem
 				key={task.id}
