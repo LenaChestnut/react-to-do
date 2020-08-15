@@ -166,7 +166,11 @@ class App extends React.Component {
 						addTask={this.addTask}
 					/>
 				) : null}
-				<Navbar toggleMenu={this.toggleMenu} />
+				<Navbar
+					toggleMenu={this.toggleMenu}
+					currentProject={this.state.currentProject}
+					setCurrentProject={this.setCurrentProject}
+				/>
 				<div
 					className={
 						this.state.isMenuOpen
