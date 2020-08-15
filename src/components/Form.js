@@ -53,7 +53,10 @@ function EditProjectForm(props) {
 
 	const handleChange = (e) => {
 		const { value } = e.target;
-		setProject({ ...project, title: value });
+		const updatedTasks = project.tasks.map((task) => {
+			return { ...task, project: { ...task.project, title: value } };
+		});
+		setProject({ ...project, title: value, tasks: updatedTasks });
 	};
 
 	const handleSubmit = (e) => {
@@ -89,6 +92,7 @@ function EditProjectForm(props) {
 EditProjectForm.propTypes = {
 	closeForm: PropTypes.func,
 	editProject: PropTypes.func,
+	editTask: PropTypes.func,
 	project: PropTypes.object,
 };
 

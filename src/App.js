@@ -51,10 +51,6 @@ class App extends React.Component {
 		this.updateStorage(updatedProjects);
 	};
 
-	editTask = (editedTask) => {
-		console.log(editedTask);
-	};
-
 	deleteTask = (deletedTask) => {
 		const updatedProjects = this.state.projects.map((project) => {
 			if (project.id === deletedTask.project.id) {
@@ -70,6 +66,10 @@ class App extends React.Component {
 			return project;
 		});
 		this.updateStorage(updatedProjects);
+	};
+
+	editTask = (editedTask) => {
+		console.log(editedTask);
 	};
 
 	// PROJECT CONTROL
@@ -89,10 +89,14 @@ class App extends React.Component {
 	};
 
 	editProject = (editedProject) => {
-		editedProject.tasks.forEach((task) => this.editTask(task));
+		// editedProject.tasks.forEach((task) => this.editTask(task));
 		const updatedProjects = this.state.projects.map((project) => {
 			if (project.id === editedProject.id) {
-				return { ...project, title: editedProject.title };
+				return {
+					...project,
+					title: editedProject.title,
+					tasks: editedProject.tasks,
+				};
 			}
 			return { ...project };
 		});
@@ -149,6 +153,7 @@ class App extends React.Component {
 							this.closeForm('isEditingProject');
 						}}
 						editProject={this.editProject}
+						editTask={this.editTask}
 					/>
 				) : null}
 				{this.state.isTaskFormOpen ? (
