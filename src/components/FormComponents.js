@@ -50,16 +50,19 @@ function TaskForm(props) {
 			setTask({ ...task, [name]: value });
 		} else {
 			const { id, title } = JSON.parse(value);
-			console.log(id);
-			console.log(title);
 			setTask({ ...task, project: { id, title } });
 		}
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		data.addTask(task);
-		data.closeForm();
+		if (data.formName === 'new-task') {
+			data.addTask(task);
+			data.closeForm();
+		} else {
+			data.editTask(task);
+			data.closeForm();
+		}
 	};
 
 	return (

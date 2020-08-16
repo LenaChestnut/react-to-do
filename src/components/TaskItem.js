@@ -71,7 +71,14 @@ function TaskItem(props) {
 				<div className="expanded-info-container">
 					<p className="task-project-info">{props.projectTitle}</p>
 					<p>{props.task.description}</p>
-					<button className="edit">Edit task</button>
+					<button
+						className="edit"
+						onClick={() => {
+							props.openEditForm(props.task);
+						}}
+					>
+						Edit task
+					</button>
 				</div>
 			) : null}
 		</li>
@@ -82,6 +89,7 @@ TaskItem.propTypes = {
 	task: PropTypes.object,
 	projectTitle: PropTypes.string,
 	deleteTask: PropTypes.func,
+	openEditForm: PropTypes.func,
 	currentProject: PropTypes.object,
 };
 

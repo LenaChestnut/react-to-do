@@ -42,6 +42,7 @@ function TaskList(props) {
 				task={task}
 				projectTitle={task.project.title}
 				deleteTask={props.deleteTask}
+				openEditForm={props.openEditForm}
 				currentProject={props.currentProject}
 			/>
 		));
@@ -54,6 +55,7 @@ function TaskList(props) {
 				task={task}
 				projectTitle={task.project.title}
 				deleteTask={props.deleteTask}
+				openEditForm={props.openEditForm}
 				currentProject={props.currentProject}
 			/>
 		));
@@ -74,6 +76,7 @@ TaskList.propTypes = {
 	projects: PropTypes.array,
 	currentProject: PropTypes.object,
 	openNewTaskForm: PropTypes.func,
+	openEditForm: PropTypes.func,
 	deleteTask: PropTypes.func,
 };
 

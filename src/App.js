@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import MenuPanel from './components/MenuPanel';
 import TaskList from './components/TaskList';
-import { EditProjectForm, NewTaskForm } from './components/Form';
+import { EditProjectForm, NewTaskForm, EditTaskForm } from './components/Form';
 import { v4 as uuidv4 } from 'uuid';
 import projects from './data/data';
 
@@ -11,8 +11,9 @@ class App extends React.Component {
 		projects: projects,
 		isMenuOpen: false,
 		isEditingProject: false,
+		isEditingTask: false,
 		itemToEdit: {},
-		isTaskFormOpen: false,
+		isCreatingTask: false,
 		currentProject: { id: 'default', title: 'All tasks' },
 	};
 
@@ -30,6 +31,10 @@ class App extends React.Component {
 		});
 	};
 
+	getTaskIndex = (tasks, currentTask) => {
+		return tasks.findIndex((task) => task.id === currentTask.id);
+	};
+
 	updateStorage = (data) => {
 		this.setState({
 			projects: data,
@@ -40,7 +45,7 @@ class App extends React.Component {
 	// TASK CONTROL
 
 	addTask = (task) => {
-		task.id = uuidv4();
+		task.id = task.id || uuidv4();
 		const updatedProjects = this.state.projects.map((project) => {
 			if (project.id === task.project.id) {
 				return { ...project, tasks: [...project.tasks, task] };
@@ -53,8 +58,8 @@ class App extends React.Component {
 
 	deleteTask = (deletedTask) => {
 		const updatedProjects = this.state.projects.map((project) => {
-			if (project.id === deletedTask.project.id) {
-				const index = project.tasks.indexOf(deletedTask);
+			if (this.getTaskIndex(project.tasks, deletedTask) !== -1) {
+				const index = this.getTaskIndex(project.tasks, deletedTask);
 				return {
 					...project,
 					tasks: [
@@ -65,11 +70,36 @@ class App extends React.Component {
 			}
 			return project;
 		});
+
 		this.updateStorage(updatedProjects);
 	};
 
 	editTask = (editedTask) => {
-		console.log(editedTask);
+		const updatedProjects = this.state.projects
+			.map((project) => {
+				if (this.getTaskIndex(project.tasks, editedTask) !== -1) {
+					const index = this.getTaskIndex(project.tasks, editedTask);
+					return {
+						...project,
+						tasks: [
+							...project.tasks.slice(0, index),
+							...project.tasks.slice(index + 1),
+						],
+					};
+				}
+				return project;
+			})
+			.map((project) => {
+				if (project.id === editedTask.project.id) {
+					return {
+						...project,
+						tasks: [...project.tasks, editedTask],
+					};
+				}
+				return { ...project };
+			});
+
+		this.updateStorage(updatedProjects);
 	};
 
 	// PROJECT CONTROL
@@ -89,7 +119,6 @@ class App extends React.Component {
 	};
 
 	editProject = (editedProject) => {
-		// editedProject.tasks.forEach((task) => this.editTask(task));
 		const updatedProjects = this.state.projects.map((project) => {
 			if (project.id === editedProject.id) {
 				return {
@@ -123,7 +152,7 @@ class App extends React.Component {
 	// FORMS
 	openNewTaskForm = () => {
 		this.setState({
-			isTaskFormOpen: true,
+			isCreatingTask: true,
 		});
 	};
 
@@ -131,6 +160,11 @@ class App extends React.Component {
 		if (item.infoType === 'project') {
 			this.setState({
 				isEditingProject: true,
+				itemToEdit: item,
+			});
+		} else if (item.infoType === 'task') {
+			this.setState({
+				isEditingTask: true,
 				itemToEdit: item,
 			});
 		}
@@ -156,14 +190,25 @@ class App extends React.Component {
 						editTask={this.editTask}
 					/>
 				) : null}
-				{this.state.isTaskFormOpen ? (
+				{this.state.isCreatingTask ? (
 					<NewTaskForm
 						projects={this.state.projects}
 						currentProject={this.state.currentProject}
 						closeForm={() => {
-							this.closeForm('isTaskFormOpen');
+							this.closeForm('isCreatingTask');
 						}}
 						addTask={this.addTask}
+					/>
+				) : null}
+				{this.state.isEditingTask ? (
+					<EditTaskForm
+						projects={this.state.projects}
+						task={this.state.itemToEdit}
+						currentProject={this.state.currentProject}
+						closeForm={() => {
+							this.closeForm('isEditingTask');
+						}}
+						editTask={this.editTask}
 					/>
 				) : null}
 				<Navbar
@@ -191,6 +236,7 @@ class App extends React.Component {
 					projects={this.state.projects}
 					currentProject={this.state.currentProject}
 					openNewTaskForm={this.openNewTaskForm}
+					openEditForm={this.openEditForm}
 					deleteTask={this.deleteTask}
 				/>
 			</div>

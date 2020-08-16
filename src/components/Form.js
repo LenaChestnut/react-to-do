@@ -110,4 +110,13 @@ function NewTaskForm(props) {
 	);
 }
 
-export { NewProjectForm, EditProjectForm, NewTaskForm };
+function EditTaskForm(props) {
+	return (
+		<div>
+			<Backdrop />
+			<TaskForm props={{ ...props }} />
+		</div>
+	);
+}
+
+export { NewProjectForm, EditProjectForm, NewTaskForm, EditTaskForm };
