@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"description": "A to-do app project (The Odin Project curriculum), React",
 	"private": true,
+	"homepage": ".",
 	"devDependencies": {
 		"@babel/core": "^7.10.5",
 		"@babel/preset-env": "^7.10.4",
