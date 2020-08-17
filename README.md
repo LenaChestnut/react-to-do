@@ -6,4 +6,4 @@ A to-do app built with React.
 
 ## Deployment notes
 
-Before running `npm run build`, add `"homepage": "."` to `package.json`.
+Before running `npm run build`, add `"homepage": "https://lenachestnut.github.io/[repo-name]"` to `package.json`.
